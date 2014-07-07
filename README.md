@@ -1,4 +1,4 @@
-# Editorconfig generate
+# Editorconfig generator
 
 `[sudo] npm install fast-editorconfig -g`
 
@@ -21,27 +21,27 @@ ident-style = space
 
 #### Type of the file
 
---type (alias -t)
+`--type (alias -t)`
 
 #### Size of the identation
 
- --size (alias -l)
+`--size (alias -l)`
 
 #### Style of the identation
 
- --style (alias -s)
+`--style (alias -s)`
 
 #### Trim trailing whitespace
 
- --whitespace (alias -w)
+`--whitespace (alias -w)`
 
 #### Root
 
- --root (alias -r)
+`--root (alias -r)`
 
 #### Max line length
 
---maxline (alias -m)
+`--maxline (alias -m)`
 
 ## Author
 [Filipe Linhares](http://twitter.com/ofilipelinhares)
