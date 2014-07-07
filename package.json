@@ -1,9 +1,9 @@
 {
   "name": "fast-editorconfig",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "Generate your .editorconfig file.",
   "license": "MIT",
-  "repository": "filipelinhares/ecgenerate",
+  "repository": "filipelinhares/fast-editorconfig",
   "author": {
     "name": "Filipe Linhares",
     "email": "filipelinhares@gmail.com"

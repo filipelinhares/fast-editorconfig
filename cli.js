@@ -19,11 +19,6 @@ if (argv.type && argv.size && argv.style) {
   '';
 };
 
-if(argv.root){
-  str += ''+
-  '\nroot = ' + argv.root
-}
-
 if(argv.whitespace){
   str += ''+
   '\ntrim_trailing_whitespace = ' + argv.whitespace +
@@ -39,12 +34,17 @@ if(argv.maxline){
 fs.readFile('.editorconfig', function (err, data) {
   if(err){
     fs.exists('.editorconfig', function () {
-      fs.writeFileSync('.editorconfig', '# editorconfig.org');
+      if(!argv.root){
+        fs.writeFileSync('.editorconfig', '# editorconfig.org');
+      }
+      if(argv.root){
+        fs.writeFileSync('.editorconfig', '# editorconfig.org\n root = true');
+      }
     });
   }
 
   fs.appendFile('.editorconfig', str, function (err) {
-    if (err) throw err;
+    if (err) throw console.log(err);
 
     console.log('.editorconfig has generated with success! ✔');
   });
