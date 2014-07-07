@@ -6,7 +6,7 @@ Now you just type:
 
 `fec --type js --size 2 --style space`
 
-And it's will generate a .editorconfig file like this.
+And it's will generate an .editorconfig file like this.
 
 ```
 # editorconfig.org
@@ -15,7 +15,7 @@ And it's will generate a .editorconfig file like this.
 ident-size = 2
 ident-style = space
 ```
-
+***ps: Generate one block per time.***
 
 ## Options
 
