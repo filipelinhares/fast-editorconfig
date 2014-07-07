@@ -1,0 +1,31 @@
+{
+  "name": "fast-editorconfig",
+  "version": "0.1.0",
+  "description": "Generate your .editorconfig file.",
+  "license": "MIT",
+  "repository": "filipelinhares/ecgenerate",
+  "author": {
+    "name": "Filipe Linhares",
+    "email": "filipelinhares@gmail.com"
+  },
+  "bin": {
+    "fec": "cli.js"
+  },
+  "files": [
+    "cli.js"
+  ],
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "keywords": [
+    "cli",
+    "editorconfig"
+  ],
+  "bugs": {
+    "url": "https://github.com/filipelinhares/fast-editorconfig/issues"
+  },
+  "homepage": "https://github.com/filipelinhares/fast-editorconfig",
+  "dependencies": {
+    "yargs": "^1.2.6"
+  }
+}

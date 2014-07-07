@@ -1,0 +1,11 @@
+# editorconfig.org
+
+[*.json]
+ident-size = 2
+ident-style = space
+root = true
+trim_trailing_whitespace = true
+
+[*.js]
+ident-size = 2
+ident-style = space
