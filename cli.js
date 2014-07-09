@@ -2,6 +2,8 @@
 'use strict';
 var fs = require('fs');
 var chalk = require('chalk');
+var multiline = require('multiline');
+var pkg = require('./package.json');
 var argv = require('yargs')
   .alias('t', 'type')
   .alias('s', 'style')
@@ -10,6 +12,8 @@ var argv = require('yargs')
   .alias('w', 'whitespace')
   .alias('m', 'maxline')
   .alias('n', 'newline')
+  .alias('h', 'help')
+  .alias('v', 'version')
   .argv;
 var str;
 
@@ -20,10 +24,42 @@ var options = {
       whitespace : argv.whitespace,
       maxline    : argv.maxline,
       newLine    : argv.newline,
-      root       : argv.root
+      root       : argv.root,
+      help       : argv.help,
+      version    : argv.version
     };
 
-//# Handling same cases
+//# Information logs
+
+if (options.version) {
+  console.log(chalk.yellow('Fast Editorconfig: ' + pkg.version));
+  process.exit();
+}
+
+if (options.help) {
+  var help = multiline (function() {/*
+    88888  888888  888888
+    88     8888    88
+    888    8888    88
+    88     888888  888888
+
+    Options
+
+    -t, --type         Define the type of the file
+    -s, --style        Define indent_style
+    -l, --size         Define indent_style
+    -w, --whitespace   Define trim_trailing_whitespace
+    -m, --maxline      Define max_line_length
+    -n, --newline      Define insert_final_newline
+
+--
+  */});
+
+  console.log(help);
+  process.exit();
+}
+
+//# ============ Handling same cases
 switch (options.fileType) {
   case 'python':
     options.fileType = 'py';
