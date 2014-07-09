@@ -81,12 +81,12 @@ if (options.fileType) {
   //# Handling if user set only type.
   if (options.indentSize || options.indentStyle || options.whitespace || options.maxline || options.newLine) {
     if (options.fileType === 'all' || options.fileType === true) {
-      str = '\n' +
+      str = '' +
       '\n[*]' +
       '';
     }
     else if (options.fileType !== 'all') {
-      str = '\n' +
+      str = '' +
       '\n[*.'+options.fileType+']' +
       '';
     }
@@ -158,16 +158,16 @@ fs.readFile('.editorconfig', function (err) {
 
       //# If not exists we create one
       if (!argv.root) {
-        fs.writeFileSync('.editorconfig', '# editorconfig.org');
+        fs.writeFileSync('.editorconfig', '# editorconfig.org\n');
       }
       if (options.root) {
         //# Add root to top of the file
-        fs.writeFileSync('.editorconfig', '# editorconfig.org\n root = true');
+        fs.writeFileSync('.editorconfig', '# editorconfig.org\n\nroot = true\n');
       }
     });
   }
 
-  fs.appendFile('.editorconfig', str, function (err) {
+  fs.appendFile('.editorconfig', str + '\n', function (err) {
     if (err) throw console.log(err);
 
     console.log(chalk.green('.editorconfig has been generated with success! ✔'));
