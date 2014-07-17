@@ -1,4 +1,4 @@
-# Fast Editorconfig 0.3.1
+# Fast Editorconfig 0.3.3
 
 An easy way to generate your [editorconfig](http://editorconfig.org) files.
 

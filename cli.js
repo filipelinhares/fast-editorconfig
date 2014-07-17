@@ -151,25 +151,20 @@ if (options.newLine) {
   }
 }
 
-//# Check if exist an .editorconfig file
-fs.readFile('.editorconfig', function (err) {
-  if (err) {
-    fs.exists('.editorconfig', function () {
+var existFile = fs.existsSync('.editorconfig');
 
-      //# If not exists we create one
-      if (!argv.root) {
-        fs.writeFileSync('.editorconfig', '# editorconfig.org\n');
-      }
-      if (options.root) {
-        //# Add root to top of the file
-        fs.writeFileSync('.editorconfig', '# editorconfig.org\n\nroot = true\n');
-      }
-    });
+if(!existFile) {
+
+  if (!argv.root) {
+    fs.writeFileSync('.editorconfig', '# editorconfig.org\n');
   }
+  if (options.root) {
+    //# Add root to top of the file
+    fs.writeFileSync('.editorconfig', '# editorconfig.org\n\nroot = true\n');
+  }
+}
 
-  fs.appendFile('.editorconfig', str + '\n', function (err) {
-    if (err) throw console.log(err);
-
-    console.log(chalk.green('.editorconfig has been generated with success! ✔'));
-  });
+fs.appendFile('.editorconfig', str + '\n', function (err) {
+  if (err) throw console.log(err);
+  console.log(chalk.green('.editorconfig has been generated with success! ✔'));
 });
