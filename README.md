@@ -22,8 +22,8 @@ it's will generate an `.editorconfig` with this content:
 #editorconfig.org
 
 [*.js]
-ident-size = 2
-ident-style = space
+indent-size = 2
+indent-style = space
 ```
 
 ## Options
@@ -55,8 +55,8 @@ And the results is:
 
 ```
 [*.rb]
-ident-size = 2
-ident-style = 2
+indent-size = 2
+indent-style = 2
 ```
 
 But wait, the languages supported for now is:
@@ -67,14 +67,14 @@ But wait, the languages supported for now is:
 
 If you type all time all name of the language and want this feature just open an issue.
 
-####  Size of the ident
+####  Size of the indent
 
 - Command: `--size`
 - Alias: `-l`
 - Values: `integer`
 
 
-#### Style of the ident
+#### Style of the indent
 
 - Command: `--style`
 - Alias: `-s`
