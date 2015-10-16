@@ -11,9 +11,6 @@
   "bin": {
     "fec": "cli.js"
   },
-  "files": [
-    "cli.js"
-  ],
   "engines": {
     "node": ">=0.10.0"
   },
@@ -26,8 +23,8 @@
   },
   "homepage": "https://github.com/filipelinhares/fast-editorconfig",
   "dependencies": {
-    "yargs": "^1.2.6",
     "chalk": "^0.5.0",
-    "multiline": "^0.3.4"
+    "multiline": "^0.3.4",
+    "yargs": "^1.2.6"
   }
 }

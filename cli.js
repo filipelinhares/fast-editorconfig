@@ -1,10 +1,12 @@
 #!/usr/bin/env node
+
 'use strict';
-var fs = require('fs');
-var chalk = require('chalk');
+
+var fs        = require('fs');
+var chalk     = require('chalk');
 var multiline = require('multiline');
-var pkg = require('./package.json');
-var argv = require('yargs')
+var pkg       = require('./package.json');
+var argv      = require('yargs')
   .alias('t', 'type')
   .alias('s', 'style')
   .alias('l', 'size')
@@ -15,7 +17,9 @@ var argv = require('yargs')
   .alias('h', 'help')
   .alias('v', 'version')
   .argv;
-var str;
+
+var str    = [];
+var header = ['# editorconfig.org'];
 
 var options = {
       fileType   : argv.type,
@@ -80,15 +84,11 @@ if (options.fileType) {
 
   //# Handling if user set only type.
   if (options.indentSize || options.indentStyle || options.whitespace || options.maxline || options.newLine) {
-    if (options.fileType === 'all' || options.fileType === true) {
-      str = '' +
-      '\n[*]' +
-      '';
+    if (options.fileType === 'all') {
+      str.push('\n\n[*]');
     }
-    else if (options.fileType !== 'all') {
-      str = '' +
-      '\n[*.'+options.fileType+']' +
-      '';
+    else {
+      str.push('\n\n[*.' + options.fileType + ']');
     }
   } else {
     console.log(chalk.red('Define someone option to your file!'));
@@ -101,17 +101,13 @@ if (options.fileType) {
 
 //# Indent Size
 if (options.indentSize) {
-  str += '' +
-  '\nindent_size = ' + options.indentSize +
-  '';
+  str.push('indent_size = ' + options.indentSize);
 }
 
 //# Indent Style
 if (options.indentStyle) {
   if (options.indentStyle === 'tab' || options.indentStyle === 'space') {
-    str += ''+
-    '\nindent_style = ' + options.indentStyle +
-    '';
+    str.push('indent_style = ' + options.indentStyle);
   } else if (options.indentStyle !== 'tab' || options.indentStyle !== 'space') {
     console.log(chalk.red('Style only accept space and tab!'));
     process.exit();
@@ -121,33 +117,23 @@ if (options.indentStyle) {
 //# Trim trailing whitespace
 if (options.whitespace) {
   if (options.whitespace === 'false') {
-      str += ''+
-      '\ntrim_trailing_whitespace = false' +
-      '';
+    str.push('trim_trailing_whitespace = false');
   } else {
-    str += ''+
-    '\ntrim_trailing_whitespace = true'+
-    '';
+    str.push('trim_trailing_whitespace = true');
   }
 }
 
 //# Max-line
 if (options.maxline) {
-    str += ''+
-    '\nmax_line_length = ' + options.maxline +
-    '';
+    str.push('max_line_length = ' + options.maxline);
 }
 
 //# Insert new line
 if (options.newLine) {
   if (options.newLine === 'false') {
-      str += ''+
-      '\ninsert_final_newline = false' +
-      '';
+      str.push('insert_final_newline = false');
   } else {
-    str += ''+
-    '\ninsert_final_newline = true'+
-    '';
+    str.push('insert_final_newline = true');
   }
 }
 
@@ -156,15 +142,16 @@ var existFile = fs.existsSync('.editorconfig');
 if(!existFile) {
 
   if (!argv.root) {
-    fs.writeFileSync('.editorconfig', '# editorconfig.org\n');
+    fs.writeFileSync('.editorconfig', header.join('\n'));
   }
   if (options.root) {
     //# Add root to top of the file
-    fs.writeFileSync('.editorconfig', '# editorconfig.org\n\nroot = true\n');
+    header.push('root = true');
+    fs.writeFileSync('.editorconfig', header.join('\n'));
   }
 }
 
-fs.appendFile('.editorconfig', str + '\n', function (err) {
+fs.appendFile('.editorconfig', str.join('\n'), function (err) {
   if (err) throw console.log(err);
   console.log(chalk.green('.editorconfig has been generated with success! ✔'));
 });
