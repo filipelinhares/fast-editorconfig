@@ -1,4 +1,4 @@
-# Fast Editorconfig 0.3.3
+# Fast Editorconfig 1.0.0
 
 An easy way to generate your [editorconfig](http://editorconfig.org) files.
 
@@ -112,7 +112,7 @@ If you type all time all name of the language and want this feature just open an
 
 ## Contributing
 
-Fork the project and send pull requests.  
+Fork the project and send pull requests.
 Open [issues](https://github.com/filipelinhares/fast-editorconfig/issues)
 
 ## Author
