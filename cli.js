@@ -2,11 +2,12 @@
 
 'use strict';
 
-var fs        = require('fs');
-var chalk     = require('chalk');
-var multiline = require('multiline');
-var pkg       = require('./package.json');
-var argv      = require('yargs')
+const fs        = require('fs');
+const chalk     = require('chalk');
+const multiline = require('multiline');
+const pkg       = require('./package.json');
+const pathExists = require('path-exists');
+const argv      = require('yargs')
   .alias('t', 'type')
   .alias('s', 'style')
   .alias('l', 'size')
@@ -18,10 +19,10 @@ var argv      = require('yargs')
   .alias('v', 'version')
   .argv;
 
-var str    = [];
-var header = ['# editorconfig.org'];
+let str    = [];
+let header = ['# editorconfig.org'];
 
-var options = {
+let options = {
       fileType   : argv.type,
       indentSize : argv.size,
       indentStyle: argv.style,
@@ -41,7 +42,7 @@ if (options.version) {
 }
 
 if (options.help) {
-  var help = multiline (function() {/*
+  const help = multiline (() => {/*
     88888  888888  888888
     88     8888    88
     888    8888    88
@@ -137,7 +138,7 @@ if (options.newLine) {
   }
 }
 
-var existFile = fs.existsSync('.editorconfig');
+let existFile = pathExists.sync('.editorconfig');
 
 if(!existFile) {
 
@@ -151,7 +152,7 @@ if(!existFile) {
   }
 }
 
-fs.appendFile('.editorconfig', str.join('\n'), function (err) {
+fs.appendFile('.editorconfig', str.join('\n'), (err) => {
   if (err) throw console.log(err);
   console.log(chalk.green('.editorconfig has been generated with success! ✔'));
 });
